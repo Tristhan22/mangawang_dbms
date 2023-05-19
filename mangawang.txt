@@ -1,0 +1,62 @@
+CREATE DATABASE longexam;
+
+USE longexam;
+
+CREATE TABLE Student (
+	Studentno varchar(15) PRIMARY KEY,
+    StudentFName varchar (15),
+    StudenLname varchar (15),
+    Major varchar (15),
+    Gender enum ("F", "M"),
+    HomeAddress varchar (15)
+
+);
+
+CREATE TABLE Grade(
+	Studentno  varchar (15),
+    SubjectCode varchar (15),
+    Grade int,
+    FOREIGN KEY (Studentno) REFERENCES Student(Studentno),
+    FOREIGN KEY (SubjectCode) REFERENCES subject(SubjectCode),
+    PRIMARY KEY (Studentno,SubjectCode)
+);
+
+CREATE TABLE subject(
+	SubjectCode int PRIMARY KEY AUTO_INCREMENT,
+    SubjectDescr varchar (15) 
+
+);
+
+
+INSERT INTO Student VALUES 
+	("S_101", "Ana", "Cruz", "ECE", "F", "MAlolos Bulacan"),
+    ("S_102", "Hazel", "ponce", "COE", "F", "Plaridel Bulacan"),
+    ("S_103", "Gristov", "Concio", "ECE", "M", "Malolos Bulacan"),
+    ("S_104", "Aris", "Clavio", "COE", "M", "Pulitan Bulacan"),
+    ("S_105", "Honey", "Pelavio", "COE", "F", "Plaridel Bulacan"),
+    ("S_106", "Carrie", "Abao", "ECE", "F", "Pulilan Bulacan");
+    
+INSERT INTO Grade VALUES
+("S-101","Chem123", "2.00"),
+("S-101","Math122", "1.00"),
+("S-101","Math123", "1.50"),
+("S-102","Chem123", "1.75"),
+("S-102","Math122", "1.25"),
+("S-102","Math123", "1.50"),
+("S-103","Chem123", "2.00"),
+("S-103","Math122", "1.75"),
+("S-103","Math123", "1.25"),
+("S-104","Chem123", "1.25"),
+("S-104","Math122", "2.25"),
+("S-104","Math123", "2.50"),
+("S-105","Chem123", "1.00"),
+("S-105","Math122", "1.25"),
+("S-105","Math123", "2.50"),
+("S-106","Chem123", "1.25"),
+("S-106","Math122", "1.50"),
+("S-106","Math123", "1.75");
+
+INSERT INTO subject VALUES
+("Chem123","Chemistry"),
+("Math122","Trigonomitry"),
+("Chem123","Algebra");
